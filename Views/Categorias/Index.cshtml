@@ -1,0 +1,67 @@
+
+@model IEnumerable<FinTrack.Models.Categoria>
+
+@{
+    ViewData["Title"] = "Categorías";
+}
+
+<h2>Administración de Categorías</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">
+        Nueva categoría
+    </a>
+</p>
+
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["Error"]
+    </div>
+}
+
+<table class="table table-striped table-bordered">
+    <thead class="table-dark">
+        <tr>
+            <th>Nombre</th>
+            <th>Tipo</th>
+            <th>Descripción</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var categoria in Model)
+        {
+            <tr>
+                <td>@categoria.Nombre</td>
+                <td>@categoria.Tipo</td>
+                <td>@categoria.Descripcion</td>
+                <td>
+                    @(categoria.Activa ? "Activa" : "Inactiva")
+                </td>
+                <td>
+                    <a asp-action="Edit"
+                       asp-route-id="@categoria.Id"
+                       class="btn btn-warning btn-sm">
+                        Editar
+                    </a>
+
+                    <form asp-action="Delete"
+                          asp-route-id="@categoria.Id"
+                          method="post"
+                          class="d-inline">
+
+                        @Html.AntiForgeryToken()
+
+                        <button type="submit"
+                                class="btn btn-danger btn-sm"
+                                onclick="return confirm('¿Eliminar categoría?')">
+                            Eliminar
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

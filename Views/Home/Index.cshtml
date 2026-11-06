@@ -1,0 +1,82 @@
+﻿
+@{
+    ViewData["Title"] = "Panel Principal";
+}
+
+<div class="text-center mb-5">
+    <h1 class="display-5 fw-bold">
+        Bienvenido a FinTrack
+    </h1>
+
+    <p class="lead text-muted">
+        Sistema de administración y control financiero
+    </p>
+</div>
+
+@if (User.IsInRole("Admin"))
+{
+    <div class="row g-4">
+
+        <div class="col-md-6">
+            <div class="card shadow-sm h-100">
+                <div class="card-body p-4">
+
+                    <h4 class="card-title">
+                        Movimientos financieros
+                    </h4>
+
+                    <p class="card-text text-muted">
+                        Registra, consulta, edita y elimina
+                        ingresos y gastos.
+                    </p>
+
+                    <a asp-controller="Movimientos"
+                       asp-action="Index"
+                       class="btn btn-primary">
+                        Administrar movimientos
+                    </a>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card shadow-sm h-100">
+                <div class="card-body p-4">
+
+                    <h4 class="card-title">
+                        Categorías
+                    </h4>
+
+                    <p class="card-text text-muted">
+                        Organiza los ingresos y gastos
+                        mediante categorías financieras.
+                    </p>
+
+                    <a asp-controller="Categorias"
+                       asp-action="Index"
+                       class="btn btn-success">
+                        Administrar categorías
+                    </a>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+}
+else
+{
+    <div class="text-center">
+        <p>
+            Inicia sesión con tu cuenta administrativa
+            para acceder al sistema.
+        </p>
+
+        <a asp-area="Identity"
+           asp-page="/Account/Login"
+           class="btn btn-primary btn-lg">
+            Iniciar sesión
+        </a>
+    </div>
+}

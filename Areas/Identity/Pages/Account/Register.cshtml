@@ -1,0 +1,22 @@
+﻿
+@page
+@model FinTrack.Areas.Identity.Pages.Account.RegisterModel
+
+@{
+    ViewData["Title"] = "Registro deshabilitado";
+}
+
+<div class="container py-5 text-center">
+    <h2>Registro de usuarios deshabilitado</h2>
+
+    <p class="text-muted">
+        FinTrack es un sistema de administración privada.
+        No se permite crear cuentas públicamente.
+    </p>
+
+    <a asp-area="Identity"
+       asp-page="/Account/Login"
+       class="btn btn-primary">
+        Volver al inicio de sesión
+    </a>
+</div>
